@@ -47,7 +47,6 @@ function App() {
   return (
     <div className="app">
 
-      {/* ===== HERO ===== */}
       {!showMenu ? (
   <div className="hero">
     <div className="hero-bg"></div>
@@ -70,13 +69,12 @@ function App() {
 ) : (
         <>
 
-          {/* NAV */}
           <div className="nav">
             <button onClick={() => setPage("menu")}>Menu</button>
             <button onClick={() => setPage("about")}>About</button>
           </div>
 
-          {/* ABOUT PAGE */}
+        
           {page === "about" ? (
             <div className="about">
               <h1>About Restaurant</h1>
@@ -91,7 +89,7 @@ function App() {
             </div>
           ) : (
 
-            /* MENU PAGE */
+           
             <div className="menu">
 
               <header className="header">
@@ -103,7 +101,7 @@ function App() {
                 />
               </header>
 
-              {/* CATEGORIES */}
+            
               <div className="categories">
                 {categories.map((cat, i) => (
                   <button
@@ -116,7 +114,7 @@ function App() {
                 ))}
               </div>
 
-              {/* GRID */}
+              
               <div className="grid fade-in">
                {filteredMenu.map((item, i) => (
   <div className="card" key={i}>
@@ -143,7 +141,7 @@ function App() {
 ))}
               </div>
 
-              {/* MODAL */}
+            
               {selectedItem && (
                 <div className="modal" onClick={() => setSelectedItem(null)}>
                   <div className="modal-box">

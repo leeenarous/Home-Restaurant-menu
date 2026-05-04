@@ -14,7 +14,7 @@ body {
   justify-content: center;
 }
 
-/* خلفية سينمائية */
+
 .hero-bg {
   position: absolute;
   inset: 0;
@@ -23,33 +23,38 @@ body {
   transform: scale(1.1);
 }
 
-/* overlay ناعم */
+
 .hero-content {
   position: relative;
-  text-align: center;
+
   color: white;
-  z-index: 2;
+
   animation: fadeUp 1s ease;
+   text-align: center;
+  padding: 20px;
+  z-index: 2;
 }
 
 .hero-title {
-  font-size: 60px;
-  letter-spacing: 6px;
+
   font-weight: 700;
   color: #facc15;
   text-shadow: 0 10px 40px rgba(0,0,0,0.6);
+    font-size: clamp(28px, 6vw, 60px);
+  letter-spacing: 3px;
+  word-break: break-word;
 }
 
 .hero-sub {
   margin-top: 15px;
-  font-size: 18px;
-  opacity: 0.8;
+    font-size: clamp(14px, 3.5vw, 18px);
+  padding: 0 10px;
+  opacity: 0.85;
 }
 
-/* زر فخم */
+
 .hero-btn {
   margin-top: 30px;
-  padding: 14px 35px;
   border: none;
   border-radius: 50px;
   cursor: pointer;
@@ -61,6 +66,8 @@ body {
 
   transition: 0.3s;
   box-shadow: 0 10px 30px rgba(250,204,21,0.3);
+    padding: 12px 25px;
+  font-size: 14px;
 }
 
 .hero-btn:hover {
@@ -68,7 +75,7 @@ body {
   box-shadow: 0 15px 40px rgba(250,204,21,0.4);
 }
 
-/* animation */
+
 @keyframes fadeUp {
   from {
     opacity: 0;
@@ -94,7 +101,7 @@ body {
   color: white;
 }
 
-/* ===== HEADER ===== */
+
 .header {
   text-align: center;
 }
@@ -105,7 +112,7 @@ body {
   border-radius: 10px;
 }
 
-/* ===== CATEGORIES ===== */
+
 .categories {
   display: flex;
   overflow-x: auto;
@@ -127,7 +134,7 @@ body {
   color: black;
 }
 
-/* ===== GRID ===== */
+
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
@@ -135,7 +142,7 @@ body {
   padding: 20px;
 }
 
-/* ===== CARD ===== */
+
 .card {
   background: #1e293b;
   border-radius: 20px;
@@ -163,7 +170,7 @@ body {
   transform: scale(1.05);
 }
 
-/* لما الصورة تكتمل تحميل */
+
 .menu-img.loaded {
   filter: blur(0);
   transform: scale(1);
@@ -185,14 +192,13 @@ body {
   border-radius: 10px;
 }
 
-/* ===== FOOTER ===== */
 footer {
   text-align: center;
   padding: 20px;
   opacity: 0.7;
 }
 
-/* ===== MODAL ===== */
+
 .modal {
   position: fixed;
   top:0;
@@ -212,7 +218,7 @@ footer {
   text-align:center;
 }
 
-/* ===== SKELETON ===== */
+
 .skeleton-container {
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -233,7 +239,7 @@ footer {
   100% {opacity:0.6;}
 }
 
-/* ===== ANIMATION ===== */
+
 .fade-in {
   animation: fade 0.4s ease;
 }
@@ -241,4 +247,14 @@ footer {
 @keyframes fade {
   from {opacity:0; transform:translateY(10px);}
   to {opacity:1; transform:translateY(0);}
+}
+@media (max-width: 600px) {
+  .hero-title {
+    letter-spacing: 1px;
+    line-height: 1.2;
+  }
+
+  .hero-sub {
+    line-height: 1.5;
+  }
 }
