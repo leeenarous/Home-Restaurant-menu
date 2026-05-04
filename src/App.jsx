@@ -7,7 +7,8 @@ function App() {
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
   const [showMenu, setShowMenu] = useState(false);
-  const [favorites, setFavorites] = useState([]);
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [page, setPage] = useState("menu"); // menu | about
 
   useEffect(() => {
     fetch(
@@ -33,112 +34,135 @@ function App() {
     return matchCategory && matchSearch;
   });
 
-  const toggleFav = (item) => {
-    if (favorites.includes(item.name)) {
-      setFavorites(favorites.filter((f) => f !== item.name));
-    } else {
-      setFavorites([...favorites, item.name]);
-    }
-  };
-
   if (loading) {
-    return <div className="loading">Loading...</div>;
+    return (
+      <div className="skeleton-container">
+        {[1, 2, 3, 4, 5, 6].map((i) => (
+          <div key={i} className="skeleton-card"></div>
+        ))}
+      </div>
+    );
   }
 
   return (
     <div className="app">
 
-
+      {/* ===== HERO ===== */}
       {!showMenu ? (
-        <div className="hero">
-          <div className="hero-overlay">
-            <div className="hero-content">
-              <h1>HOME RESTAURANT</h1>
-              <p>Experience Taste Like Never Before 🍽</p>
+  <div className="hero">
+    <div className="hero-bg"></div>
 
-              <button onClick={() => setShowMenu(true)}>
-                Explore Menu
-              </button>
+    <div className="hero-content">
+      <h1 className="hero-title">HOME RESTAURANT</h1>
+
+      <p className="hero-sub">
+        A modern dining experience crafted with taste & elegance
+      </p>
+
+      <button
+        className="hero-btn"
+        onClick={() => setShowMenu(true)}
+      >
+        Enter Menu
+      </button>
+    </div>
+  </div>
+) : (
+        <>
+
+          {/* NAV */}
+          <div className="nav">
+            <button onClick={() => setPage("menu")}>Menu</button>
+            <button onClick={() => setPage("about")}>About</button>
+          </div>
+
+          {/* ABOUT PAGE */}
+          {page === "about" ? (
+            <div className="about">
+              <h1>About Restaurant</h1>
+              <p>
+                This is a modern digital restaurant menu built with React.
+                Smooth UI, fast filtering, and elegant design experience.
+              </p>
+
+              <footer>
+                Developed by <b>Leen Arous</b>
+              </footer>
             </div>
-          </div>
-        </div>
-      ) : (
-        <div className="menu">
-
-          <header className="header">
-            <h1>🍽 Menu</h1>
-
-            <input
-              type="text"
-              placeholder="ابحث عن طبق..."
-              onChange={(e) => setSearch(e.target.value)}
-            />
-
-            <p className="count">
-              عدد الأصناف: {filteredMenu.length}
-            </p>
-          </header>
-
-          
-          <div className="categories">
-            {categories.map((cat, i) => (
-              <button
-                key={i}
-                className={selectedCategory === cat ? "active" : ""}
-                onClick={() => setSelectedCategory(cat)}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-
-        
-          {filteredMenu.length === 0 ? (
-            <div className="empty">لا توجد نتائج 😕</div>
           ) : (
-            <div className="grid">
-              {filteredMenu.map((item, i) => (
-                <div className="card fade" key={i}>
 
-                
+            /* MENU PAGE */
+            <div className="menu">
+
+              <header className="header">
+                <h1>🍽 Menu</h1>
+
+                <input
+                  placeholder="ابحث عن طبق..."
+                  onChange={(e) => setSearch(e.target.value)}
+                />
+              </header>
+
+              {/* CATEGORIES */}
+              <div className="categories">
+                {categories.map((cat, i) => (
                   <button
-                    className="fav"
-                    onClick={() => toggleFav(item)}
+                    key={i}
+                    className={selectedCategory === cat ? "active" : ""}
+                    onClick={() => setSelectedCategory(cat)}
                   >
-                    {favorites.includes(item.name) ? "❤️" : "🤍"}
+                    {cat}
                   </button>
+                ))}
+              </div>
 
-                  <div className="img-box">
-                    <img
-                      src={
-                        item.image ||
-                        "https://images.unsplash.com/photo-1546069901-ba9599a7e63c"
-                      }
-                      alt={item.name}
-                    />
+              {/* GRID */}
+              <div className="grid fade-in">
+               {filteredMenu.map((item, i) => (
+  <div className="card" key={i}>
+
+    <div className="img-box">
+      <img
+        src={item.image}
+        alt={item.name}
+        loading="lazy"
+        decoding="async"
+        className="menu-img"
+      />
+    </div>
+
+    <div className="info">
+      <h2>{item.name}</h2>
+      <p>{item.section}</p>
+      <span>{item.price} ل.س</span>
+
+  
+    </div>
+
+  </div>
+))}
+              </div>
+
+              {/* MODAL */}
+              {selectedItem && (
+                <div className="modal" onClick={() => setSelectedItem(null)}>
+                  <div className="modal-box">
+                    <h2>{selectedItem.name}</h2>
+                    <img src={selectedItem.image} />
+                    <p>{selectedItem.section}</p>
+                    <span>{selectedItem.price} ل.س</span>
                   </div>
-
-                  <div className="info">
-                    <h2>{item.name}</h2>
-                    <p>{item.section}</p>
-                    <span>{item.price} ل.س</span>
-                  </div>
-
                 </div>
-              ))}
+              )}
+
+              <footer>
+                Developed by <b>Leen Arous</b>
+              </footer>
+
             </div>
           )}
-
-        </div>
+        </>
       )}
-
-    
-      {showMenu && (
-        <button className="top-btn" onClick={() => window.scrollTo(0, 0)}>
-          ↑
-        </button>
-      )}
-
     </div>
   );
 }

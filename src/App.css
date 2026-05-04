@@ -1,187 +1,244 @@
 body {
   margin: 0;
-  font-family: "Cairo", sans-serif;
+  font-family: "Cairo";
   background: #0f172a;
   color: white;
 }
 
-
 .hero {
   height: 100vh;
+  position: relative;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(circle at top, #1e293b, #0f172a);
 }
 
-.hero-overlay {
-  width: 90%;
-  max-width: 700px;
+/* خلفية سينمائية */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: url("https://images.unsplash.com/photo-1600891964092-4316c288032e") center/cover no-repeat;
+  filter: brightness(0.35) contrast(1.2);
+  transform: scale(1.1);
+}
+
+/* overlay ناعم */
+.hero-content {
+  position: relative;
   text-align: center;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(12px);
-  padding: 60px 30px;
-  border-radius: 25px;
+  color: white;
+  z-index: 2;
+  animation: fadeUp 1s ease;
 }
 
-.hero-content h1 {
-  font-size: 48px;
+.hero-title {
+  font-size: 60px;
+  letter-spacing: 6px;
+  font-weight: 700;
   color: #facc15;
+  text-shadow: 0 10px 40px rgba(0,0,0,0.6);
 }
 
-.hero-content button {
-  padding: 14px 30px;
+.hero-sub {
+  margin-top: 15px;
+  font-size: 18px;
+  opacity: 0.8;
+}
+
+/* زر فخم */
+.hero-btn {
+  margin-top: 30px;
+  padding: 14px 35px;
   border: none;
-  border-radius: 30px;
-  background: linear-gradient(45deg, #facc15, #eab308);
-  font-weight: bold;
+  border-radius: 50px;
   cursor: pointer;
+
+  background: linear-gradient(135deg, #facc15, #eab308);
+  color: black;
+  font-weight: bold;
+  letter-spacing: 1px;
+
+  transition: 0.3s;
+  box-shadow: 0 10px 30px rgba(250,204,21,0.3);
 }
 
+.hero-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 15px 40px rgba(250,204,21,0.4);
+}
 
+/* animation */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.nav {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+}
+
+.nav button {
+  padding: 10px 15px;
+  border-radius: 10px;
+  border: none;
+  background: #1e293b;
+  color: white;
+}
+
+/* ===== HEADER ===== */
 .header {
   text-align: center;
-  position: sticky;
-  top: 0;
-  background: #0f172a;
-  padding: 10px;
-  z-index: 10;
 }
 
 .header input {
+  padding: 10px;
   width: 60%;
-  padding: 12px;
   border-radius: 10px;
-  border: none;
-  outline: none;
 }
 
-.count {
-  opacity: 0.7;
-}
-
+/* ===== CATEGORIES ===== */
 .categories {
   display: flex;
-  gap: 10px;
   overflow-x: auto;
+  gap: 10px;
   padding: 10px;
 }
 
 .categories button {
-  padding: 10px 15px;
-  border-radius: 20px;
-  border: 1px solid #334155;
-  background: transparent;
+  padding: 10px;
+  border-radius: 15px;
+  border: none;
+  background: #1e293b;
   color: white;
-  cursor: pointer;
+  transition: 0.3s;
 }
 
 .categories .active {
-  background: #facc15;
+  background: gold;
   color: black;
 }
 
+/* ===== GRID ===== */
 .grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+  gap: 15px;
   padding: 20px;
 }
 
-
+/* ===== CARD ===== */
 .card {
-  position: relative;
-  background: rgba(30, 41, 59, 0.7);
+  background: #1e293b;
   border-radius: 20px;
   overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
   transition: 0.3s;
 }
 
 .card:hover {
-  transform: translateY(-10px);
+  transform: translateY(-5px);
 }
 
-
-.fade {
-  animation: fadeIn 0.5s ease;
-}
-
-@keyframes fadeIn {
-  from {opacity: 0; transform: translateY(10px);}
-  to {opacity: 1; transform: translateY(0);}
-}
-
-
-.img-box img {
+.card img {
   width: 100%;
-  height: 180px;
+  height: 150px;
   object-fit: cover;
 }
+.menu-img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
 
+  filter: blur(10px);
+  transition: filter 0.5s ease, transform 0.3s ease;
+  transform: scale(1.05);
+}
 
+/* لما الصورة تكتمل تحميل */
+.menu-img.loaded {
+  filter: blur(0);
+  transform: scale(1);
+}
+
+.card:hover .menu-img {
+  transform: scale(1.1);
+}
 .info {
+  padding: 10px;
   text-align: center;
-  padding: 15px;
 }
 
-.info h2 {
-  color: #facc15;
-}
-
-.info span {
-  font-weight: bold;
-}
-
-
-.fav {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: rgba(0,0,0,0.4);
+.info button {
+  margin-top: 10px;
+  padding: 5px 10px;
   border: none;
-  border-radius: 50%;
-  padding: 8px;
-  cursor: pointer;
+  background: gold;
+  border-radius: 10px;
 }
 
-
-.empty {
+/* ===== FOOTER ===== */
+footer {
   text-align: center;
-  padding: 50px;
-  opacity: 0.6;
+  padding: 20px;
+  opacity: 0.7;
 }
 
-
-.loading {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #facc15;
-}
-
-
-.top-btn {
+/* ===== MODAL ===== */
+.modal {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #facc15;
-  border: none;
-  padding: 12px 15px;
-  border-radius: 50%;
-  cursor: pointer;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background: rgba(0,0,0,0.8);
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
-
-@media (min-width: 768px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.modal-box {
+  background:#1e293b;
+  padding:20px;
+  border-radius:20px;
+  text-align:center;
 }
 
-@media (min-width: 1024px) {
-  .grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+/* ===== SKELETON ===== */
+.skeleton-container {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  padding:20px;
+}
+
+.skeleton-card {
+  height:150px;
+  background: #334155;
+  border-radius:15px;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {opacity:0.6;}
+  50% {opacity:1;}
+  100% {opacity:0.6;}
+}
+
+/* ===== ANIMATION ===== */
+.fade-in {
+  animation: fade 0.4s ease;
+}
+
+@keyframes fade {
+  from {opacity:0; transform:translateY(10px);}
+  to {opacity:1; transform:translateY(0);}
 }
