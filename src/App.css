@@ -5,7 +5,7 @@ body {
   color: white;
 }
 
-/* ===== HERO ===== */
+
 .hero {
   height: 100vh;
   display: flex;
@@ -39,7 +39,7 @@ body {
   cursor: pointer;
 }
 
-/* ===== HEADER ===== */
+
 .header {
   text-align: center;
   position: sticky;
@@ -61,7 +61,6 @@ body {
   opacity: 0.7;
 }
 
-/* ===== CATEGORIES ===== */
 .categories {
   display: flex;
   gap: 10px;
@@ -83,7 +82,6 @@ body {
   color: black;
 }
 
-/* ===== GRID ===== */
 .grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -91,7 +89,7 @@ body {
   padding: 20px;
 }
 
-/* ===== CARD ===== */
+
 .card {
   position: relative;
   background: rgba(30, 41, 59, 0.7);
@@ -104,7 +102,7 @@ body {
   transform: translateY(-10px);
 }
 
-/* fade animation */
+
 .fade {
   animation: fadeIn 0.5s ease;
 }
@@ -114,14 +112,14 @@ body {
   to {opacity: 1; transform: translateY(0);}
 }
 
-/* image */
+
 .img-box img {
   width: 100%;
   height: 180px;
   object-fit: cover;
 }
 
-/* info */
+
 .info {
   text-align: center;
   padding: 15px;
@@ -135,7 +133,7 @@ body {
   font-weight: bold;
 }
 
-/* favorite */
+
 .fav {
   position: absolute;
   top: 10px;
@@ -147,14 +145,14 @@ body {
   cursor: pointer;
 }
 
-/* empty */
+
 .empty {
   text-align: center;
   padding: 50px;
   opacity: 0.6;
 }
 
-/* loading */
+
 .loading {
   height: 100vh;
   display: flex;
@@ -163,7 +161,7 @@ body {
   color: #facc15;
 }
 
-/* top button */
+
 .top-btn {
   position: fixed;
   bottom: 20px;
@@ -175,7 +173,7 @@ body {
   cursor: pointer;
 }
 
-/* responsive */
+
 @media (min-width: 768px) {
   .grid {
     grid-template-columns: repeat(2, 1fr);

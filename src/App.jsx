@@ -48,7 +48,7 @@ function App() {
   return (
     <div className="app">
 
-      {/* ===== HERO ===== */}
+
       {!showMenu ? (
         <div className="hero">
           <div className="hero-overlay">
@@ -65,7 +65,6 @@ function App() {
       ) : (
         <div className="menu">
 
-          {/* HEADER */}
           <header className="header">
             <h1>🍽 Menu</h1>
 
@@ -80,7 +79,7 @@ function App() {
             </p>
           </header>
 
-          {/* CATEGORIES */}
+          
           <div className="categories">
             {categories.map((cat, i) => (
               <button
@@ -93,7 +92,7 @@ function App() {
             ))}
           </div>
 
-          {/* CARDS */}
+        
           {filteredMenu.length === 0 ? (
             <div className="empty">لا توجد نتائج 😕</div>
           ) : (
@@ -101,7 +100,7 @@ function App() {
               {filteredMenu.map((item, i) => (
                 <div className="card fade" key={i}>
 
-                  {/* Favorite */}
+                
                   <button
                     className="fav"
                     onClick={() => toggleFav(item)}
@@ -133,7 +132,7 @@ function App() {
         </div>
       )}
 
-      {/* ===== TOP BUTTON ===== */}
+    
       {showMenu && (
         <button className="top-btn" onClick={() => window.scrollTo(0, 0)}>
           ↑
