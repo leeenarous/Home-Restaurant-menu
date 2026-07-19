@@ -23,18 +23,45 @@ const [cart,setCart] = useState([]);
 
 
 
-  useEffect(() => {
+useEffect(() => {
 
-    fetch(
-      "https://opensheet.elk.sh/1s-23Wc5ey1m267UNM59V8wwW72JiKmuVJ3V45djA0FE/1"
-    )
-      .then(res => res.json())
-      .then(data => {
-        setMenu(data);
-        setLoading(false);
-      });
+  const loadMenu = async () => {
 
-  }, []);
+    try {
+
+      const response = await fetch(
+        "https://opensheet.elk.sh/1s-23Wc5ey1m267UNM59V8wwW72JiKmuVJ3V45djA0FE/1"
+      );
+
+
+      if (!response.ok) {
+        throw new Error("Failed to load menu");
+      }
+
+
+      const data = await response.json();
+
+
+      setMenu(data);
+
+
+    } catch (error) {
+
+      console.log("Menu loading error:", error);
+
+    } finally {
+
+      setLoading(false);
+
+    }
+
+  };
+
+
+  loadMenu();
+
+
+}, []);
 
 
 
